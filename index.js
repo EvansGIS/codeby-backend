@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const axios = require("axios").create({ baseUrl: "" });
 const { v4: uuidv4 } = require('uuid');
 const nodemailer = require('nodemailer');
+require('dotenv').config();
 
 const app = express();
 app.use(bodyParser.json());
@@ -34,9 +35,9 @@ app.post("/mail", async (req, res) => {
       type: 'OAuth2',
       user: 'codebeast0420@gmail.com',
       pass: 'codebeast0420!@#',
-      clientId: '285817227208-submk3onndptffg48ginmqvlsev80on8.apps.googleusercontent.com',
-      clientSecret: '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',
-      refreshToken: '1//04RSvXBLYHsOhCgYIARAAGAQSNwF-L9IrY-PFg_tl8kykAoZD8hJrnBLFSyyQHxrLNTV5eQvgxdWWphbqILeMOIrSXnRgLiiq_9g'
+      clientId: process.env.MAIL_CLIENT_ID,
+      clientSecret: process.env.MAIL_CLIENT_SECRET,
+      refreshToken: process.env.MAIL_REFRESH_TOKEN
     }
   });
   let mailOptions = {
