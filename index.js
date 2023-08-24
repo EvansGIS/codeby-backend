@@ -64,10 +64,11 @@ app.post("/mail", async (req, res) => {
 })
 
 app.get("/", (req, res) => {
-	res.send("Hello, Worlds")
+	res.send("Hello, Worldsssss")
 })
 
 app.post("/add-to-cart", (req, res) => {
+	console.log('req our console', req.body);
 	console.log('req', req.body);
 	axios.get(`https://codebyedgesite.myshopify.com/admin/api/2023-04/products/${req.body.productId}.json`,
 		{
