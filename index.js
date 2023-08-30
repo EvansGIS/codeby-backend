@@ -31,8 +31,12 @@ app.post("/mail", async (req, res) => {
 	let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'saintjohn0420@gmail.com',
-      pass: 'npklrlxiwppyfpus',
+      type: 'OAuth2',
+      user: 'codebeast0420@gmail.com',
+      pass: 'codebeast0420!@#',
+      clientId: '285817227208-submk3onndptffg48ginmqvlsev80on8.apps.googleusercontent.com',
+      clientSecret: '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',
+      refreshToken: '1//04RSvXBLYHsOhCgYIARAAGAQSNwF-L9IrY-PFg_tl8kykAoZD8hJrnBLFSyyQHxrLNTV5eQvgxdWWphbqILeMOIrSXnRgLiiq_9g'
     }
   });
   let mailOptions = {
@@ -42,20 +46,7 @@ app.post("/mail", async (req, res) => {
     text: req.body.text
   };
 
-  await transporter.sendMail(mailOptions, function (err, data) {
-    if (err) {
-      console.log("Error " + err);
-    } else {
-      console.log("Email sent successfully");
-    }
-  });
-	transporter.sendMail(mailOptions, function(error, info){
-		if (error) {
-			console.log(error);
-		} else {
-			console.log('Email sent: ' + info.response);
-		}
-	});
+	await transporter.sendMail(mailOptions);
 	res.send('success');
 })
 
