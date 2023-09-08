@@ -4,6 +4,8 @@ const bodyParser = require("body-parser");
 const axios = require("axios").create({ baseUrl: "" });
 const { v4: uuidv4 } = require('uuid');
 const nodemailer = require('nodemailer');
+require('dotenv').config();
+
 
 const app = express();
 app.use(bodyParser.json());
@@ -57,7 +59,7 @@ app.post("/add-to-cart", (req, res) => {
 		{
 			headers: {
 				'Content-Type': 'application/json',
-				'X-Shopify-Access-Token': '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'
+				'X-Shopify-Access-Token': process.env.SHOPIFY_KEY
 			},
 		}
 	)
@@ -84,7 +86,7 @@ app.post("/create-cart", (req, res) => {
 		{
 			headers: {
 				'Content-Type': 'application/json',
-				'X-Shopify-Access-Token': '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'
+				'X-Shopify-Access-Token': process.env.SHOPIFY_KEY
 			},
 		}
 	)
